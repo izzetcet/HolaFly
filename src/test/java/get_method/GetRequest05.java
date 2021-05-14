@@ -21,7 +21,7 @@ public class GetRequest05 extends HerokuappBaseUrl {
         spec.
                 pathParam("first", "booking").
                 queryParams("firstname", "Eric",
-                        "lastname", "Brown");
+                        "lastname", "Wilson");
 
         //2)Set the expected data
 
@@ -31,7 +31,7 @@ public class GetRequest05 extends HerokuappBaseUrl {
 
         response.then().assertThat().statusCode(200);
 
-        assertTrue(response.asString().contains("bookingid"));
+        assertTrue(response.asString().contains("bookingid")); // Eger queryparam daki isim varsa bookingid mevcuttur.Yoksa fail olur
 
     }
 }
