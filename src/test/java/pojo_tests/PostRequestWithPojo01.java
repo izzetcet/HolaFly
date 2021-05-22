@@ -5,8 +5,11 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Test;
 import pojos.TodosPojo;
+import utils.JsonUtil;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
+
 
 public class PostRequestWithPojo01 extends JsonPlaceHolderBaseUrl {
     /*
@@ -43,6 +46,24 @@ public class PostRequestWithPojo01 extends JsonPlaceHolderBaseUrl {
     //Assert the output
         //1,WAY : Use GSON to convert response body to  TodosPojo\
         TodosPojo actualPojo =response.as(TodosPojo.class);
-        System.out.println(actualPojo);
+        System.out.println("Coming from GSON: " + actualPojo);
+
+       assertEquals(201, response.getStatusCode());
+        assertEquals(expectedPojo.getTitle(),actualPojo.getTitle());
+        assertEquals(expectedPojo.getUserId(),actualPojo.getUserId());
+        assertEquals(expectedPojo.isCompleted(),actualPojo.isCompleted());
+
+
+
+        //2.WAY :Use O  bject Mapper Class
+        TodosPojo actualPojo2 = JsonUtil.convertJsonToJava(response.asString(), TodosPojo.class);
+        System.out.println("Comin from Object Mapper: " + actualPojo2);
+
+        assertEquals(201, response.getStatusCode());
+        assertEquals(expectedPojo.getTitle(),actualPojo2.getTitle());
+        assertEquals(expectedPojo.getUserId(),actualPojo2.getUserId());
+        assertEquals(expectedPojo.isCompleted(),actualPojo2.isCompleted());
+
+
     }
 }
