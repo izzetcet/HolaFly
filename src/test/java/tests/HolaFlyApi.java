@@ -39,12 +39,13 @@ public class HolaFlyApi {
 
     @Test
     public void getPlanet() {
-        Response response = RestAssured.get("planets/1/");
+        Response response = RestAssured.get("planets/59/");
+        response.prettyPrint();
 
         JsonPath jsonPath = response.jsonPath();
         Assert.assertEquals("statusCode not match with expected", 200, response.statusCode());
-        Assert.assertEquals("Planet name not match with expected", "Tatooine", jsonPath.getString("name"));
-        Assert.assertEquals("Planet gravity not match with expected", "1 standard", jsonPath.getString("gravity"));
+        Assert.assertEquals("Planet name not match with expected", "Kalee", jsonPath.getString("name"));
+        Assert.assertEquals("Planet gravity not match with expected", "1", jsonPath.getString("gravity"));
     }
 
     @Test
