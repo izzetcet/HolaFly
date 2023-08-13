@@ -6,9 +6,7 @@ import io.restassured.response.Response;
 import org.junit.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.util.Random;
-
 import static io.restassured.RestAssured.*;
 
 public class HolaFlyApi {
